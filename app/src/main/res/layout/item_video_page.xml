@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#000"
+    android:layout_height="match_parent">
+    <com.example.douyin.widget.FullScreenVideoView
+        android:id="@+id/video_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="false"
+        android:focusable="false" />
+
+    <LinearLayout
+        android:layout_marginLeft="15dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginRight="100dp"
+        android:layout_marginBottom="40dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\@hahahha"
+            android:textColor="#fff"/>
+
+        <TextView
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="视频描述视频描述视频描述视频描述视频描述视频描述"
+            android:textColor="#e6e1e1"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="60dp">
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp">
+            <com.example.douyin.widget.MySmartImage
+                android:background="@drawable/header_icon_2"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/circle_big_red"
+                android:src="@drawable/add_icon"
+                android:tint="@android:color/white"
+                android:scaleType="centerInside"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                />
+        </RelativeLayout>
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:drawableTop="@mipmap/c"
+            android:layout_marginTop="16dp"
+            android:text="1.6w"
+            android:textColor="#fff"
+            android:gravity="center"
+            />
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:drawableTop="@mipmap/e"
+            android:layout_marginTop="16dp"
+            android:text="1.6w"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            />
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:drawableTop="@mipmap/f"
+            android:layout_marginTop="16dp"
+            android:text="1.6w"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            />
+    </LinearLayout>
+</RelativeLayout>

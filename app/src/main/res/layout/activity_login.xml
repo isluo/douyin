@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.LoginActivity"
+    android:background="#eb9e50ed"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/iv_back_selected"/>
+        <TextView
+            android:id="@+id/tv_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fefefe"
+            android:text="注册"
+            android:textSize="16sp"
+            android:layout_margin="30dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="请登录"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="#fefefe"
+        android:textSize="18sp"/>
+
+    <EditText
+        android:id="@+id/et_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:drawableLeft="@mipmap/user_name_icon"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="8dp"
+        android:hint="请输入账号"
+        android:maxLength="16"
+        android:textColor="#000000"
+        android:singleLine="true"
+        android:textColorHint="#c2b7d7"
+        android:background="@drawable/et_ba1"
+        android:textSize="14dp"/>
+
+    <EditText
+        android:layout_marginTop="7dp"
+        android:id="@+id/et_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:drawableLeft="@mipmap/psw_icon"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="8dp"
+        android:hint="请输入账号密码"
+        android:maxLength="16"
+        android:textColor="#000000"
+        android:singleLine="true"
+        android:textColorHint="#c2b7d7"
+        android:inputType="textPassword"
+        android:background="@drawable/et_ba1"
+        android:textSize="14dp"/>
+    <TextView
+        android:padding="5dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:id="@+id/tv_findpwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="找回密码"
+        android:gravity="center"
+        android:textSize="12dp"
+        android:textColor="#f9cd15"/>
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:background="@drawable/circle_big_red"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+
+</LinearLayout>

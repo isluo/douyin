@@ -3,6 +3,7 @@ package com.example.douyin;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -10,6 +11,13 @@ import android.widget.TextView;
 
 import com.example.douyin.fragment.HomeFragment;
 import com.example.douyin.fragment.MyInfoFragment;
+import com.example.douyin.util.MyVolley;
+import com.example.douyin.wenl.GetDate;
+import com.example.douyin.wenl.pojo.User;
+
+import org.json.JSONObject;
+
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -78,7 +86,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 bottomChange(0);
                 break;
             case R.id.tv_follow:
+                MyVolley.B.edit.exec("asdfadghaa1","aaaaaaaa","女","111111111","NNAME").exec(this);
+
                 bottomChange(1);
+
                 break;
             case R.id.iv_shoot:
                 break;
@@ -88,6 +99,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.tv_my:getSupportFragmentManager().beginTransaction().replace(R.id.relativelayout,new MyInfoFragment()).commit();
                 bottomChange(3);
                 break;
+        }
+    }
+
+    public void edit(JSONObject jsonObject){
+        Map<String,Object> maps = GetDate.getEdit(jsonObject);
+        Log.e("AAAAA",maps.get("msg").toString() );
+        if((boolean)maps.get("msg")){
+            Log.e("BBB","修改信息成功" );
+        }else{
+            Log.e("CCC","修改信息失败"+maps.get("ERROR").toString() );
         }
     }
 

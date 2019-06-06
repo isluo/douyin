@@ -52,7 +52,7 @@ public class User {
     }
 
     public void setIntroduce(String introduce) {
-        this.introduce = introduce == null ? null : introduce.trim();
+        this.introduce = introduce ==   null ? null : introduce.trim();
     }
 
     public String getHead() {

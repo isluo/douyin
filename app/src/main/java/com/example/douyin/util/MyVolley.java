@@ -20,12 +20,11 @@ import java.lang.reflect.Method;
  */
 
 public class MyVolley {
-    static String path = "http://%s:8080/student/lostfound/%s";
+    static String path = "http://%s/wla/dyin/%s";
     public enum B{
         login("{\"username\":\"%s\",\"password\":\"%s\"}"),
-        register("{\"username\":\"%s\",\"password\":\"%s\"}"),
-        edit("{\"username\":\"%s\",\"phone\":\"%s\",\"email\":\"%s\"}"),
-        findAllType("{\"username\":\"%s\"}");
+        register("{\"username\":\"%s\",\"password\":\"%s\",\"gender\":\"%s\",\"introduce\":\"%s\",\"nname\":\"%s\"}"),
+        edit("{\"username\":\"%s\",\"password\":\"%s\",\"gender\":\"%s\",\"introduce\":\"%s\",\"nname\":\"%s\"}"),
         ;
 
         public String str;

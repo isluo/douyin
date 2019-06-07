@@ -4,8 +4,11 @@ import android.util.Log;
 
 import com.example.douyin.util.MyVolley;
 import com.example.douyin.wenl.pojo.User;
+import com.example.douyin.wenl.pojo.Video;
+import com.google.gson.Gson;
 
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -122,7 +125,7 @@ public class GetDate {
      *                 }else{
      *                     Log.e("CCC","修改信息失败"+maps.get("ERROR").toString() );
      *                 }
-     *             }
+     *                }
      */
     public static Map<String,Object> getEdit(JSONObject jsonObject){
         Map<String,Object> maps = new HashMap<>();
@@ -139,6 +142,160 @@ public class GetDate {
         return maps;
     }
 
+    /**
+     * 视频点赞
+     * @param jsonObject
+     * @return
+     *            MyVolley.B.updateVideoNum.updateVideoNum("17").exec(this);
+     *              public void updateVideoNum(JSONObject jsonObject){
+     *              Map<String,Object> maps = GetDate.updateVideoNum(jsonObject);
+     *              Log.e("AAAAA",maps.get("msg").toString() );
+     *              if((boolean)maps.get("msg")){
+     *                  Log.e("BBB","点赞成功" );
+     *              }else{
+     *                Log.e("CCC","点赞失败"+maps.get("ERROR").toString() );
+     *              }
+     *            }
+     *
+     */
+    public static Map<String,Object> updateVideoNum(JSONObject jsonObject){
+        Map<String,Object> maps = new HashMap<>();
+        try {
+            if(jsonObject.getString("msg").equals("1")){
+                maps.put("msg",true);
+            }else{
+                maps.put("msg",false);
+                maps.put("ERROR","视频不存在");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return maps;
+    }
+
+    /**
+     * 获取所有视频
+     * @param jsonObject
+     * @return
+     *
+     *            MyVolley.B.findAllVideo.exec(App.user).exec(this);
+     *
+     *           public void findAllVideo(JSONObject jsonObject){
+     *         Map<String,Object> maps = GetDate.findAllVideo(jsonObject);
+     *         Log.e("AAAAA",maps.get("msg").toString() );
+     *         if((boolean)maps.get("msg")){
+     *             List<Video> lists = (List<Video>) maps.get("list_video");
+     *             for (Video video : lists) {
+     *                 Log.e("video",video.toString());
+     *             }
+     *             Log.e("BBB","获取视频成功" );
+     *         }else{
+     *             Log.e("CCC","修改信息失败"+maps.get("ERROR").toString() );
+     *         }
+     *      }
+     */
+    public static Map<String,Object> findAllVideo(JSONObject jsonObject){
+        Map<String,Object> maps = new HashMap<>();
+        try {
+            if(jsonObject.getString("msg").equals("1")){
+                JSONArray array = jsonObject.getJSONArray("lostType");
+                List<Video> list_video = new ArrayList<>();
+
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject object = new JSONObject(array.get(i).toString());
+                    Video video = new Video();
+                    video = new Gson().fromJson(object.toString(),Video.class);
+                    list_video.add(video);
+                }
+                maps.put("list_video",list_video);
+                maps.put("msg",true);
+            }else{
+                maps.put("msg",false);
+                maps.put("ERROR",jsonObject.getString("ERROR"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return maps;
+    }
+
+
+    /**
+     * 根据用户id获取视频
+     * @param jsonObject
+     * @return
+     *
+     *            MyVolley.B.findVideoByUserID.exec(App.user).exec(this);
+     *
+     *           public void findAllVideo(JSONObject jsonObject){
+     *          Map<String,Object> maps = GetDate.findVideoByUserID(jsonObject);
+     *         Log.e("AAAAA",maps.get("msg").toString() );
+     *         if((boolean)maps.get("msg")){
+     *             List<Video> lists = (List<Video>) maps.get("list_video");
+     *             for (Video video : lists) {
+     *                 Log.e("video",video.toString());
+     *             }
+     *             Log.e("BBB","获取视频成功" );
+     *         }else{
+     *             Log.e("CCC","修改信息失败"+maps.get("ERROR").toString() );
+     *         }
+     *      }
+     */
+    public static Map<String,Object> findVideoByUserID(JSONObject jsonObject){
+        Map<String,Object> maps = new HashMap<>();
+        try {
+            if(jsonObject.getString("msg").equals("1")){
+                JSONArray array = jsonObject.getJSONArray("lostType");
+                List<Video> list_video = new ArrayList<>();
+
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject object = new JSONObject(array.get(i).toString());
+                    Video video = new Video();
+                    video = new Gson().fromJson(object.toString(),Video.class);
+                    list_video.add(video);
+                }
+                maps.put("list_video",list_video);
+                maps.put("msg",true);
+            }else{
+                maps.put("msg",false);
+                maps.put("ERROR",jsonObject.getString("ERROR"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return maps;
+    }
+
+
+    /**
+     * 根据用户id 视频id 删除视频
+     *
+     *       MyVolley.B.removeVideo.exec(App.user,18).exec(this);
+     *
+     *        public void removeVideo(JSONObject jsonObject){
+     *          Map<String,Object> maps = GetDate.removeVideo(jsonObject);
+     *       Log.e("AAAAA",maps.get("msg").toString() );
+     *       if((boolean)maps.get("msg")){
+     *          Log.e("BBB","删除成功" );
+     *          }else{
+     *            Log.e("CCC","删除成功"+maps.get("ERROR").toString() );
+     *          }
+     *         }
+     */
+    public static Map<String,Object> removeVideo(JSONObject jsonObject){
+        Map<String,Object> maps = new HashMap<>();
+        try {
+            if(jsonObject.getString("msg").equals("1")){
+                maps.put("msg",true);
+            }else{
+                maps.put("msg",false);
+                maps.put("ERROR",jsonObject.getString("ERROR"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return maps;
+    }
 
 
 

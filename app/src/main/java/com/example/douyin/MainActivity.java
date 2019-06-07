@@ -14,9 +14,11 @@ import com.example.douyin.fragment.MyInfoFragment;
 import com.example.douyin.util.MyVolley;
 import com.example.douyin.wenl.GetDate;
 import com.example.douyin.wenl.pojo.User;
+import com.example.douyin.wenl.pojo.Video;
 
 import org.json.JSONObject;
 
+import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -86,7 +88,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 bottomChange(0);
                 break;
             case R.id.tv_follow:
-                MyVolley.B.edit.exec("asdfadghaa1","aaaaaaaa","女","111111111","NNAME").exec(this);
 
                 bottomChange(1);
 
@@ -95,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.tv_msg:
                 bottomChange(2);
+
                 break;
             case R.id.tv_my:getSupportFragmentManager().beginTransaction().replace(R.id.relativelayout,new MyInfoFragment()).commit();
                 bottomChange(3);
@@ -102,15 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void edit(JSONObject jsonObject){
-        Map<String,Object> maps = GetDate.getEdit(jsonObject);
-        Log.e("AAAAA",maps.get("msg").toString() );
-        if((boolean)maps.get("msg")){
-            Log.e("BBB","修改信息成功" );
-        }else{
-            Log.e("CCC","修改信息失败"+maps.get("ERROR").toString() );
-        }
-    }
+
 
     public void bottomChange(int p){
         for (int i = 0; i < imageViews.length; i++) {
@@ -120,5 +114,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageViews[p].setBackgroundResource(R.drawable.linew);
         textViews[p].setTextColor(Color.parseColor("#ffffff"));
     }
+
 
 }

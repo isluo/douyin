@@ -25,6 +25,10 @@ public class MyVolley {
         login("{\"username\":\"%s\",\"password\":\"%s\"}"),
         register("{\"username\":\"%s\",\"password\":\"%s\",\"gender\":\"%s\",\"introduce\":\"%s\",\"nname\":\"%s\"}"),
         edit("{\"username\":\"%s\",\"password\":\"%s\",\"gender\":\"%s\",\"introduce\":\"%s\",\"nname\":\"%s\"}"),
+        updateVideoNum("{\"videoid\":\"%s\"}"),
+        findAllVideo("{\"userid\":\"%s\"}"),
+        findVideoByUserID("{\"userid\":\"%s\"}"),
+        removeVideo("{\"userid\":\"%s\",\"videoid\":\"%s\"}"),
         ;
 
         public String str;

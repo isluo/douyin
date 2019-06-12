@@ -29,6 +29,10 @@ public class MyVolley {
         findAllVideo("{\"userid\":\"%s\"}"),
         findVideoByUserID("{\"userid\":\"%s\"}"),
         removeVideo("{\"userid\":\"%s\",\"videoid\":\"%s\"}"),
+        addPl("{\"videoid\":\"%s\",\"userid\":\"%s\",\"comment\":\"%s\"}"),
+        updatePlNum("{\"id\":\"%s\"}"),
+        selectPlByVideoId("{\"videoid\":\"%s\"}"),
+        removePl("{\"id\":\"%s\",\"userid\":\"%s\"}"),
         ;
 
         public String str;

@@ -3,9 +3,11 @@ package com.example.douyin.wenl;
 import android.util.Log;
 
 import com.example.douyin.util.MyVolley;
+import com.example.douyin.wenl.pojo.Pl;
 import com.example.douyin.wenl.pojo.User;
 import com.example.douyin.wenl.pojo.Video;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 
 
 import org.json.JSONArray;
@@ -297,7 +299,98 @@ public class GetDate {
         return maps;
     }
 
-    public static Map<String,Object> add(){
-        return null;
+    /**
+     *
+     * 添加评论     MyVolley.B.removeVideo.exec(App.user,18).exec(this);
+     * @param jsonObject
+     * @return
+     *
+     *
+     */
+    public static Map<String,Object> addPl(JSONObject jsonObject){
+        Map<String,Object> maps = new HashMap<>();
+        try {
+            if(jsonObject.getString("msg").equals("1")){
+                maps.put("msg",true);
+            }else{
+                maps.put("msg",false);
+                maps.put("ERROR",jsonObject.getString("ERROR"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return maps;
     }
+
+    /**
+     * 评论点赞
+     * @param jsonObject
+     * @return
+     */
+    public static Map<String,Object> updatePlNum(JSONObject jsonObject){
+        Map<String,Object> maps = new HashMap<>();
+        try {
+            if(jsonObject.getString("msg").equals("1")){
+                maps.put("msg",true);
+            }else{
+                maps.put("msg",false);
+                maps.put("ERROR",jsonObject.getString("ERROR"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return maps;
+    }
+
+    /**
+     *
+     * 根据视频id获取评论
+     * @param jsonObject
+     * @return
+     */
+    public static Map<String,Object> selectPlByVideoId(JSONObject jsonObject){
+        Map<String,Object> maps = new HashMap<>();
+        try {
+            if(jsonObject.getString("msg").equals("1")){
+                maps.put("msg",true);
+                JSONArray array = jsonObject.getJSONArray("lostType");
+                List<Pl> list_pl = new ArrayList<>();
+
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject object = new JSONObject(array.get(i).toString());
+                    Pl pl = new Pl();
+                    pl = new Gson().fromJson(object.toString(),Pl.class);
+                    list_pl.add(pl);
+                }
+                maps.put("list_pl",list_pl);
+            }else{
+                maps.put("msg",false);
+                maps.put("ERROR",jsonObject.getString("ERROR"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return maps;
+    }
+
+    /**
+     * 根据id   用户id删除pl
+     * @param jsonObject
+     * @return
+     */
+    public static Map<String,Object> removePl(JSONObject jsonObject){
+        Map<String,Object> maps = new HashMap<>();
+        try {
+            if(jsonObject.getString("msg").equals("1")){
+                maps.put("msg",true);
+            }else{
+                maps.put("msg",false);
+                maps.put("ERROR",jsonObject.getString("ERROR"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return maps;
+    }
+
 }

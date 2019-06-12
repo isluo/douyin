@@ -297,6 +297,7 @@ public class GetDate {
         return maps;
     }
 
-
-
+    public static Map<String,Object> add(){
+        return null;
+    }
 }

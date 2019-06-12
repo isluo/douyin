@@ -22,17 +22,34 @@ import java.lang.reflect.Method;
 public class MyVolley {
     static String path = "http://%s/wla/dyin/%s";
     public enum B{
+        //登陆
         login("{\"username\":\"%s\",\"password\":\"%s\"}"),
+        //注册
         register("{\"username\":\"%s\",\"password\":\"%s\",\"gender\":\"%s\",\"introduce\":\"%s\",\"nname\":\"%s\"}"),
+        //修改用户信息
         edit("{\"username\":\"%s\",\"password\":\"%s\",\"gender\":\"%s\",\"introduce\":\"%s\",\"nname\":\"%s\"}"),
+        //视频点赞
         updateVideoNum("{\"videoid\":\"%s\"}"),
+        //获取所有视频
         findAllVideo("{\"userid\":\"%s\"}"),
+        //用户查看自己的视频
         findVideoByUserID("{\"userid\":\"%s\"}"),
+        //用户删除自己的视频
         removeVideo("{\"userid\":\"%s\",\"videoid\":\"%s\"}"),
+        //添加评论
         addPl("{\"videoid\":\"%s\",\"userid\":\"%s\",\"comment\":\"%s\"}"),
+        //给评论点赞
         updatePlNum("{\"id\":\"%s\"}"),
+        //获取某视频的所有评论内容
         selectPlByVideoId("{\"videoid\":\"%s\"}"),
+        //删除评论
         removePl("{\"id\":\"%s\",\"userid\":\"%s\"}"),
+        //关注
+        addGz("{\"userid\":\"%s\",\"userid2\":\"%s\"}"),
+        //用户查看自己关注的用户
+        findByUser("{\"userid\":\"11\"}"),
+        //取消关注
+        removeGz("{\"id\":\"%s\"}")
         ;
 
         public String str;

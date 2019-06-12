@@ -3,6 +3,7 @@ package com.example.douyin.wenl;
 import android.util.Log;
 
 import com.example.douyin.util.MyVolley;
+import com.example.douyin.wenl.pojo.Gz;
 import com.example.douyin.wenl.pojo.Pl;
 import com.example.douyin.wenl.pojo.User;
 import com.example.douyin.wenl.pojo.Video;
@@ -392,5 +393,57 @@ public class GetDate {
         }
         return maps;
     }
+
+    /**
+     * 添加关注
+     * @param jsonObject
+     * @return
+     */
+
+    public static Map<String,Object> addGz(JSONObject jsonObject){
+        Map<String,Object> maps = new HashMap<>();
+        try {
+            if(jsonObject.getString("msg").equals("1")){
+                maps.put("msg",true);
+                JSONArray array = jsonObject.getJSONArray("lostType");
+                List<Gz> list_gz = new ArrayList<>();
+
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject object = new JSONObject(array.get(i).toString());
+                    Gz gz = new Gz();
+                    gz = new Gson().fromJson(object.toString(),Gz.class);
+                    list_gz.add(gz);
+                }
+                maps.put("list_gz",list_gz);
+            }else{
+                maps.put("msg",false);
+                maps.put("ERROR",jsonObject.getString("ERROR"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return maps;
+    }
+
+    /**
+     * 根据ｉｄ　取消关注        {"id":"13"}
+     * @param jsonObject
+     * @return
+     */
+    public static Map<String,Object> removeGz(JSONObject jsonObject){
+        Map<String,Object> maps = new HashMap<>();
+        try {
+            if(jsonObject.getString("msg").equals("1")){
+                maps.put("msg",true);
+            }else{
+                maps.put("msg",false);
+                maps.put("ERROR",jsonObject.getString("ERROR"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return maps;
+    }
+
 
 }

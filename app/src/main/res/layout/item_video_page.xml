@@ -9,7 +9,16 @@
         android:layout_height="match_parent"
         android:clickable="false"
         android:focusable="false" />
-
+    <ImageView
+        android:id="@+id/img_thumb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:clickable="false"
+        android:background="#000"
+        android:focusable="false"
+        android:visibility="visible"
+        />
     <LinearLayout
         android:layout_marginLeft="15dp"
         android:layout_alignParentBottom="true"
@@ -92,4 +101,15 @@
             android:gravity="center"
             />
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_play"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/play_arrow"
+        android:clickable="true"
+        android:focusable="true"
+        android:alpha="0"
+        android:layout_centerInParent="true"
+        />
 </RelativeLayout>

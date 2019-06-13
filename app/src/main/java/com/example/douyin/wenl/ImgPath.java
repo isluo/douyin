@@ -10,7 +10,7 @@ public class ImgPath {
      *      wenl121/wla/static/mp4s/XXX.jpg
      */
 
-    private static String rootPath = App.ip+"/wla/static/";
+    private static String rootPath = "http://"+App.ip+"/wla/static/";
 
     /**
      * 获取图片原图

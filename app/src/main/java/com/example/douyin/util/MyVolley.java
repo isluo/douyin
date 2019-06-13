@@ -25,7 +25,7 @@ public class MyVolley {
         //登陆
         login("{\"username\":\"%s\",\"password\":\"%s\"}"),
         //注册
-        register("{\"username\":\"%s\",\"password\":\"%s\",\"gender\":\"%s\",\"introduce\":\"%s\",\"nname\":\"%s\"}"),
+        register("{\"username\":\"%s\",\"password\":\"%s\"}"),
         //修改用户信息
         edit("{\"username\":\"%s\",\"password\":\"%s\",\"gender\":\"%s\",\"introduce\":\"%s\",\"nname\":\"%s\"}"),
         //视频点赞

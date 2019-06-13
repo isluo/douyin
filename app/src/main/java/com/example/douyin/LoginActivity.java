@@ -5,11 +5,22 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.douyin.util.MyVolley;
+import com.example.douyin.wenl.GetDate;
+import com.example.douyin.wenl.ImgPath;
+import com.example.douyin.wenl.pojo.User;
+
+import org.json.JSONObject;
+
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -72,11 +83,32 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.tv_findpwd:
                 break;
             case R.id.btn_login:
+
+               userName = et_user_name.getText().toString();
+               password = et_pwd.getText().toString();
+                MyVolley.B.login.exec(userName,password).exec(this);
                 break;
         }
     }
 
+    public void login(JSONObject jsonObject){
 
+            Map<String, Object> maps = GetDate.getLogin(jsonObject);
+            Log.e("AAAAA", maps.get("msg").toString());
+            if ((boolean) maps.get("msg")) {
+                User user = (User) maps.get("user");
+                App.user = user.getUsername();
+                App.head = ImgPath.getImgs(user.getHead());
+                App.nname = user.getNname();
+                App.introduce = user.getIntroduce();
+                Log.e("user", "" + user.toString());
+                Log.e("user", "" + App.user+"::"+App.head);
+                startActivity(new Intent(LoginActivity.this,MainActivity.class));
+            } else {
+                Log.e("CCC", "登录失败" + maps.get("ERROR").toString());
+                Toast.makeText(this,"登录失败" + maps.get("ERROR").toString(),Toast.LENGTH_SHORT).show();
+            }
+    }
 
 
 

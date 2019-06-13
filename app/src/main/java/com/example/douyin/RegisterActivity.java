@@ -1,13 +1,23 @@
 package com.example.douyin;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.example.douyin.util.MyVolley;
+import com.example.douyin.wenl.GetDate;
+
+import org.json.JSONObject;
+
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -58,10 +68,28 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 finish();
                 break;
             case R.id.btn_reg:
+                String username = et_user_name.getText().toString();
+                String password = et_pwd.getText().toString();
+                String passwordag = et_pwdag.getText().toString();
+                if(!password.equals(passwordag)){
+                    Toast.makeText(this,"密码不匹配",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                MyVolley.B.register.exec(username,password).exec(this);
                 break;
         }
     }
 
+    public void register(JSONObject jsonObject) {
+        Map<String, Object> maps = GetDate.getRegister(jsonObject);
+        Log.e("AAAAA", maps.get("msg").toString());
+        if ((boolean) maps.get("msg")) {
+            Toast.makeText(this,"注册成功",Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+        } else {
+            Toast.makeText(this,"注册失败",Toast.LENGTH_SHORT).show();
+        }
+    }
 
     private void etChangLisener() {
         et_user_name.addTextChangedListener(new TextWatcher() {

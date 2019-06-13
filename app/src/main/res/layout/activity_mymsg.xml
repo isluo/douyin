@@ -81,6 +81,7 @@
             android:textSize="16sp"
             android:text="抖音号"/>
         <TextView
+            android:enabled="false"
             android:id="@+id/tv_dyh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -129,6 +130,7 @@
             android:textSize="16sp"
             android:text="性别"/>
         <TextView
+            android:enabled="false"
             android:id="@+id/tv_xb"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

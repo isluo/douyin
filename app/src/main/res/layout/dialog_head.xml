@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:background="#fff"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingVertical="15dp">
+        <TextView
+            android:id="@+id/tv_pai"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:paddingVertical="7dp"
+            android:paddingHorizontal="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="拍一张"/>
+
+        <TextView
+            android:id="@+id/tv_xc"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:paddingVertical="7dp"
+            android:paddingHorizontal="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="相册选择"/>
+
+        <TextView
+            android:id="@+id/tv_dm"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:paddingVertical="7dp"
+            android:paddingHorizontal="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="取消"/>
+    </LinearLayout>
+</LinearLayout>

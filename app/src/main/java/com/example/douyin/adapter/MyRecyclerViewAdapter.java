@@ -32,7 +32,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     @Override
     public void onBindViewHolder(@NonNull MyViewHoder myViewHoder, int i) {
         //myViewHoder.videoView.setVideoURI(Uri.parse("android.resource://"+context.getPackageName()+"/"+ videos[i%2]));
-        myViewHoder.videoView.setVideoPath("http://s3.pstatp.com/aweme/resource/web/static/image/index/tvc-v2_30097df.mp4");
+        //myViewHoder.videoView.setVideoPath("http://s3.pstatp.com/aweme/resource/web/static/image/index/tvc-v2_30097df.mp4");
     }
 
     @Override

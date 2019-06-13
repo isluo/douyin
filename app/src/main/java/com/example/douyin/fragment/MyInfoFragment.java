@@ -1,5 +1,6 @@
 package com.example.douyin.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -7,15 +8,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.douyin.App;
+import com.example.douyin.MymsgActivity;
 import com.example.douyin.R;
 import com.loopj.android.image.SmartImageView;
 
-public class MyInfoFragment extends Fragment {
+public class MyInfoFragment extends Fragment implements View.OnClickListener {
 
     private View view;
     private SmartImageView mIvHead;
@@ -45,8 +46,8 @@ public class MyInfoFragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_myinfo, container, false);
         initView(view);
-        mTvUsernaem.setText("抖音号:"+App.user);
-        if(!App.nname.equals("" )|| App.nname != null){
+        mTvUsernaem.setText("抖音号:" + App.user);
+        if (!App.nname.equals("") || App.nname != null) {
             mTvNname.setText(App.nname);
         }
         mIvHead.setImageUrl(App.head);
@@ -63,5 +64,23 @@ public class MyInfoFragment extends Fragment {
         mLlZp = (LinearLayout) view.findViewById(R.id.ll_zp);
         mLlGz = (LinearLayout) view.findViewById(R.id.ll_gz);
         mLl = (LinearLayout) view.findViewById(R.id.ll);
+        mTvEdit.setOnClickListener(this);
+        mLlZp.setOnClickListener(this);
+        mLlGz.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            default:
+                break;
+            case R.id.tv_edit:
+                startActivity(new Intent(getActivity(), MymsgActivity.class));
+                break;
+            case R.id.ll_zp:
+                break;
+            case R.id.ll_gz:
+                break;
+        }
     }
 }

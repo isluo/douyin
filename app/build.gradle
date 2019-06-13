@@ -29,4 +29,5 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation files('libs/gson-2.7.jar')
     implementation files('libs/volley.jar')
+    implementation 'com.airsaid.library:pickerview:1.0.3'
 }

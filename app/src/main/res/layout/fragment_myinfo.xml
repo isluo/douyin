@@ -24,11 +24,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:paddingHorizontal="20dp">
-                <ImageView
+                <com.loopj.android.image.SmartImageView
+                    android:id="@+id/iv_head"
                     android:background="@drawable/yuan"
                     android:layout_width="85dp"
                     android:layout_height="85dp" />
                 <TextView
+                    android:id="@+id/tv_edit"
                     android:layout_marginLeft="30dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -47,18 +49,21 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp">
                 <TextView
+                    android:id="@+id/tv_nname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#fff"
                     android:text="luo7952"
                     android:textSize="24sp"/>
                 <TextView
+                    android:id="@+id/tv_usernaem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#fff"
                     android:text="抖音号:123123"
                     android:textSize="14sp"/>
                 <TextView
+                    android:id="@+id/tv_introduce"
                     android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -73,6 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
+                    android:id="@+id/ll_zp"
                     android:paddingHorizontal="10dp"
                     android:layout_weight="1"
                     android:orientation="vertical"
@@ -94,6 +100,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_gz"
                     android:paddingHorizontal="10dp"
                     android:layout_weight="1"
                     android:orientation="vertical"

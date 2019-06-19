@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#eb9e50ed"
+    tools:context=".RegisterActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/iv_back_selected" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="重置密码"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="#fefefe"
+        android:textSize="18sp"/>
+
+    <EditText
+        android:id="@+id/et_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:drawableLeft="@mipmap/user_name_icon"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="8dp"
+        android:hint="请输入账号"
+        android:maxLength="16"
+        android:textColor="#000000"
+        android:singleLine="true"
+        android:textColorHint="#c2b7d7"
+        android:background="@drawable/et_ba1"
+        android:textSize="14dp"/>
+
+    <EditText
+        android:layout_marginTop="7dp"
+        android:id="@+id/et_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:drawableLeft="@mipmap/psw_icon"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="8dp"
+        android:hint="请输入账号密码"
+        android:maxLength="16"
+        android:textColor="#000000"
+        android:singleLine="true"
+        android:textColorHint="#c2b7d7"
+        android:inputType="textPassword"
+        android:background="@drawable/et_ba1"
+        android:textSize="14dp"/>
+
+    <EditText
+        android:layout_marginTop="7dp"
+        android:id="@+id/et_pwdag"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:drawableLeft="@mipmap/psw_icon"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="8dp"
+        android:hint="请再次输入账号密码"
+        android:maxLength="16"
+        android:textColor="#000000"
+        android:singleLine="true"
+        android:textColorHint="#c2b7d7"
+        android:inputType="textPassword"
+        android:background="@drawable/et_ba1"
+        android:textSize="14dp"/>
+
+    <Button
+        android:enabled="false"
+        android:id="@+id/btn_cz"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:background="@drawable/yuan_w"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:textSize="16sp"
+        android:text="重置"/>
+</LinearLayout>

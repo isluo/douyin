@@ -9,6 +9,16 @@ public class Video {
 
     private Long dz;
 
+    private String videoIntro;
+
+    public String getVideoIntro() {
+        return videoIntro;
+    }
+
+    public void setVideoIntro(String videoIntro) {
+        this.videoIntro = videoIntro;
+    }
+
     public Long getVideoid() {
         return videoid;
     }

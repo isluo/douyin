@@ -1,5 +1,6 @@
 package com.example.douyin;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -93,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
             case R.id.iv_shoot:
+                startActivity(new Intent(MainActivity.this,RecActivity.class));
                 break;
             case R.id.tv_msg:
                 bottomChange(2);

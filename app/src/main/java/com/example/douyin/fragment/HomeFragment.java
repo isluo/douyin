@@ -13,12 +13,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.example.douyin.App;
 import com.example.douyin.R;
 import com.example.douyin.adapter.MyRecyclerViewAdapter;
+import com.example.douyin.util.MyVolley;
 import com.example.douyin.viewpager.OnViewPagerListener;
 import com.example.douyin.viewpager.ViewPagerLayoutManager;
+import com.example.douyin.wenl.GetDate;
+import com.example.douyin.wenl.pojo.Pl;
+import com.example.douyin.wenl.pojo.Video;
+import com.example.douyin.wenl.pojo.Videos;
+
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 public class HomeFragment extends Fragment {
 
@@ -26,6 +40,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private MyRecyclerViewAdapter adapter;
     private ViewPagerLayoutManager mLayoutManager;
+    private List<Videos> list_mp4s;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -34,17 +49,43 @@ public class HomeFragment extends Fragment {
 
         initView();
 
+
         initListener();
+
+        MyVolley.B.findAllVideo.exec(App.user).exec(this);
+
         return view;
     }
+
+    public void findAllVideo(JSONObject jsonObject){
+        Map<String,Object> maps = GetDate.findAllVideo(jsonObject);
+        Log.e("AAAAA",maps.get("msg").toString() );
+        if((boolean)maps.get("msg")){
+            List<Videos> lists = (List<Videos>) maps.get("list_video");
+
+                list_mp4s = lists;
+
+            Log.e("BBB","获取视频成功" );
+            Collections.shuffle(list_mp4s);
+            adapter = new MyRecyclerViewAdapter(getContext(),list_mp4s);
+            mRecyclerView.setLayoutManager(mLayoutManager);
+            mRecyclerView.setAdapter(adapter);
+
+
+            
+        }else{
+            Log.e("CCC","修改信息失败"+maps.get("ERROR").toString() );
+        }
+    }
+
+
 
     private void initView() {
         mRecyclerView = view.findViewById(R.id.recyclerview);
 
         mLayoutManager = new ViewPagerLayoutManager(getContext(), OrientationHelper.VERTICAL);
-        adapter = new MyRecyclerViewAdapter(getContext());
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(adapter);
+
+
     }
 
     private void initListener(){

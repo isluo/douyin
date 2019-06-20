@@ -26,6 +26,8 @@ import com.android.volley.toolbox.Volley;
 import com.example.douyin.dialog.HeadDialog;
 import com.example.douyin.util.MyVolley;
 import com.example.douyin.util.PostUploadRequest;
+import com.example.douyin.wenl.GetDate;
+import com.example.douyin.wenl.ImgPath;
 import com.example.douyin.widget.MySmartImage;
 
 import org.json.JSONObject;
@@ -102,6 +104,12 @@ public class MymsgActivity extends AppCompatActivity implements View.OnClickList
         mTvXb = (TextView) findViewById(R.id.tv_xb);
         mTvXb.setOnClickListener(this);
         mTvTitle.setText("个人信息");
+
+        mTvDyh.setText(App.user);
+        mTvXb.setText(App.sex);
+        mEtJj.setText(App.introduce);
+        mEtNc.setText(App.nname);
+        mIvHead.setImageUrl(App.head);
     }
 
     @Override
@@ -122,6 +130,10 @@ public class MymsgActivity extends AppCompatActivity implements View.OnClickList
                     mEtNc.setTextColor(Color.parseColor("#ffffff"));
                     mEtJj.setTextColor(Color.parseColor("#ffffff"));
                     mTvXb.setTextColor(Color.parseColor("#ffffff"));
+
+
+
+
                 }else {
                     mTvBj.setText("编辑");
                     mEtNc.setEnabled(false);
@@ -132,6 +144,19 @@ public class MymsgActivity extends AppCompatActivity implements View.OnClickList
                     mEtJj.setTextColor(Color.parseColor("#BE9191"));
                     mTvXb.setTextColor(Color.parseColor("#BE9191"));
                     //执行保存上传方法
+
+                    String nname = mEtNc.getText().toString().trim();
+                    String jianjie =   mEtJj.getText().toString().trim();
+                    String sex =   mTvXb.getText().toString().trim();
+                    String dyh =   mTvDyh.getText().toString().trim();
+
+
+
+                    App.nname = nname;
+                    App.sex = sex;
+                    App.introduce = jianjie;
+
+                    MyVolley.B.edit.exec(App.user,sex,jianjie,nname).exec(this);
                 }
                 break;
             case R.id.iv_head:
@@ -146,6 +171,16 @@ public class MymsgActivity extends AppCompatActivity implements View.OnClickList
             case R.id.tv_xb:
                 selectSex();
                 break;
+        }
+    }
+
+    public void edit(JSONObject jsonObject) {
+        Map<String, Object> maps = GetDate.getEdit(jsonObject);
+        Log.e("AAAAA", maps.get("msg").toString());
+        if ((boolean) maps.get("msg")) {
+            Toast.makeText(this,"修改成功",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this,"修改失败"+maps.get("ERROR"),Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -210,6 +245,8 @@ public class MymsgActivity extends AppCompatActivity implements View.OnClickList
                     //在这里获得了剪裁后的Bitmap对象，可以用于上传
                     Bitmap image = bundle.getParcelable("data");
                     //设置到ImageView上
+
+
                     mIvHead.setImageBitmap(image);
                     //也可以进行一些保存、压缩等操作后上传
                     String path = saveImage("saveImage" + System.currentTimeMillis(), image);
@@ -217,37 +254,37 @@ public class MymsgActivity extends AppCompatActivity implements View.OnClickList
 
                     String state = Environment.getExternalStorageState();
 
-//                    if (state.equals(Environment.MEDIA_MOUNTED)) {
-//
-//                        String requestURL = "http://"+App.ip+"/student/lostfound/upload";
-//
-//                        File file = new File(path);
-//
-//                        Map<String, String[]> fileMap = new HashMap<>();
-//
-//                        fileMap.put("file", new String[]{path, file.getName()});
-//
-//                        Log.e("SSSSSS", "" + fileMap.size());
-//
-//                        Map<String, String> mapText = new HashMap<>();
-//                        mapText.put("username", App.user);
-//
-//                        PostUploadRequest postUploadRequest = new PostUploadRequest(requestURL, fileMap, mapText, new Response.Listener<JSONObject>() {
-//                            @Override
-//                            public void onResponse(JSONObject jsonObject) {
-//                                Log.e("BBBBBBB", "" + jsonObject.toString());
-//                            }
-//                        }, new Response.ErrorListener() {
-//                            @Override
-//                            public void onErrorResponse(VolleyError volleyError) {
-//                                Log.e("CCCCC", "" + volleyError.toString());
-//                            }
-//                        });
-//
-//                        RequestQueue requset = Volley.newRequestQueue(getApplicationContext());
-//                        requset.add(postUploadRequest);
-//
-//                    }
+                    if (state.equals(Environment.MEDIA_MOUNTED)) {
+
+                        String requestURL = "http://"+App.ip+"/wla/dyin/upload";
+
+                        File file = new File(path);
+
+                        Map<String, String[]> fileMap = new HashMap<>();
+
+                        fileMap.put("file", new String[]{path, file.getName()});
+
+                        Log.e("SSSSSS", "" + fileMap.size());
+
+                        Map<String, String> mapText = new HashMap<>();
+                        mapText.put("username", App.user);
+
+                        PostUploadRequest postUploadRequest = new PostUploadRequest(requestURL, fileMap, mapText, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject jsonObject) {
+                                Log.e("BBBBBBB", "" + jsonObject.toString());
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError volleyError) {
+                                Log.e("CCCCC", "" + volleyError.toString());
+                            }
+                        });
+
+                        RequestQueue requset = Volley.newRequestQueue(getApplicationContext());
+                        requset.add(postUploadRequest);
+
+                    }
 
                 }
                 break;

@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:clickable="false"
         android:focusable="false" />
-    <ImageView
+    <com.loopj.android.image.SmartImageView
         android:id="@+id/img_thumb"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,12 +28,14 @@
         android:layout_marginRight="100dp"
         android:layout_marginBottom="40dp">
         <TextView
+            android:id="@+id/tv_userID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="\@hahahha"
             android:textColor="#fff"/>
 
         <TextView
+            android:id="@+id/tv_ms"
             android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,7 +56,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp">
             <com.example.douyin.widget.MySmartImage
-                android:id="@+id/iv_head"
+                android:id="@+id/si_head"
                 android:background="@drawable/header_icon_2"
                 android:layout_width="50dp"
                 android:layout_height="50dp"

@@ -6,11 +6,7 @@ import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-/**
- * Created by 钉某人
- * github: https://github.com/DingMouRen
- * email: naildingmouren@gmail.com
- */
+
 
 public class ViewPagerLayoutManager extends LinearLayoutManager {
     private static final String TAG = "ViewPagerLayoutManager";

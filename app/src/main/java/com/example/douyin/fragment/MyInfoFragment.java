@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -46,8 +47,8 @@ public class MyInfoFragment extends Fragment implements View.OnClickListener {
 
         view = inflater.inflate(R.layout.fragment_myinfo, container, false);
         initView(view);
-        mTvUsernaem.setText("抖音号:" + App.user);
-        if (!App.nname.equals("") || App.nname != null) {
+        mTvUsernaem.setText("抖音号:"+App.user);
+        if(!App.nname.equals("" )|| App.nname != null){
             mTvNname.setText(App.nname);
         }
         mIvHead.setImageUrl(App.head);

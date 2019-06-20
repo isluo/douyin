@@ -42,6 +42,7 @@
     <EditText
         android:id="@+id/et_user_name"
         android:layout_width="match_parent"
+        android:text="aaaaaaaa"
         android:layout_height="48dp"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
@@ -64,6 +65,7 @@
         android:layout_height="48dp"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
+        android:text="cccccccc"
         android:drawableLeft="@mipmap/psw_icon"
         android:drawablePadding="10dp"
         android:gravity="center_vertical"

@@ -17,14 +17,6 @@
         android:paddingVertical="7dp"
         android:background="#D8C8C8"/>
 
-    <TextView
-        android:id="@+id/tv_path"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="null"
-        android:paddingHorizontal="18dp"
-        android:textSize="18sp"/>
     <EditText
         android:id="@+id/et_text"
         android:paddingHorizontal="5dp"

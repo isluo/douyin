@@ -85,7 +85,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         Log.e("AAAAA", maps.get("msg").toString());
         if ((boolean) maps.get("msg")) {
             Toast.makeText(this,"注册成功",Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+            this.finish();
         } else {
             Toast.makeText(this,"注册失败",Toast.LENGTH_SHORT).show();
         }

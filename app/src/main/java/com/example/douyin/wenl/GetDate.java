@@ -7,6 +7,7 @@ import com.example.douyin.wenl.pojo.Gz;
 import com.example.douyin.wenl.pojo.Pl;
 import com.example.douyin.wenl.pojo.User;
 import com.example.douyin.wenl.pojo.Video;
+import com.example.douyin.wenl.pojo.Videos;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
@@ -145,6 +146,21 @@ public class GetDate {
         return maps;
     }
 
+    public static Map<String,Object> getEditPwd(JSONObject jsonObject){
+        Map<String,Object> maps = new HashMap<>();
+        try {
+            if(jsonObject.getString("msg").equals("1")){
+                maps.put("msg",true);
+            }else{
+                maps.put("msg",false);
+                maps.put("ERROR",jsonObject.getString("ERROR"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return maps;
+    }
+
     /**
      * 视频点赞
      * @param jsonObject
@@ -202,12 +218,17 @@ public class GetDate {
         try {
             if(jsonObject.getString("msg").equals("1")){
                 JSONArray array = jsonObject.getJSONArray("lostType");
-                List<Video> list_video = new ArrayList<>();
+                List<Videos> list_video = new ArrayList<>();
 
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject object = new JSONObject(array.get(i).toString());
-                    Video video = new Video();
-                    video = new Gson().fromJson(object.toString(),Video.class);
+                    Videos video = new Videos();
+                    video.setHead(ImgPath.getImgs(object.getString("head")));
+                    video.setDz(object.getLong("dz"));
+                    video.setUserid(object.getString("userid"));
+                    video.setVideoid(object.getLong("videoid"));
+                    video.setVideoIntro(object.getString("videoIntro"));
+                    video.setVideopath(object.getString("videopath"));
                     list_video.add(video);
                 }
                 maps.put("list_video",list_video);

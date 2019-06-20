@@ -8,8 +8,10 @@ public class App extends Application {
     //public static String ip = "wenl121.cn";
     public static String ip = "129.211.67.186";
     public static String user = "";
+    public static String password = "";
     public static String head = "";
     public static String nname = "";
+    public static String sex = "";
     public static String introduce = "";
     public static Context context;
     @Override

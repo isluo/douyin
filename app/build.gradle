@@ -30,4 +30,5 @@ dependencies {
     implementation files('libs/gson-2.7.jar')
     implementation files('libs/volley.jar')
     implementation 'com.airsaid.library:pickerview:1.0.3'
+    implementation 'me.zhanghai.android.materialprogressbar:library:1.4.2'
 }

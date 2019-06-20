@@ -81,6 +81,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
                 break;
             case R.id.tv_findpwd:
+                startActivity(new Intent(LoginActivity.this,CZActivity.class));
                 break;
             case R.id.btn_login:
 
@@ -98,9 +99,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             if ((boolean) maps.get("msg")) {
                 User user = (User) maps.get("user");
                 App.user = user.getUsername();
-                App.head = ImgPath.getImgs(user.getHead());
+                App.head = ImgPath.getImg(user.getHead());
                 App.nname = user.getNname();
+                App.sex = user.getGender();
                 App.introduce = user.getIntroduce();
+                App.password = password;
                 Log.e("user", "" + user.toString());
                 Log.e("user", "" + App.user+"::"+App.head);
                 startActivity(new Intent(LoginActivity.this,MainActivity.class));

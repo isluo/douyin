@@ -67,7 +67,7 @@ public class CZActivity extends AppCompatActivity implements View.OnClickListene
             case R.id.back:
                 finish();
                 break;
-            case R.id.btn_reg:
+            case R.id.btn_cz:
                 String username = et_user_name.getText().toString();
                 String password = et_pwd.getText().toString();
                 String passwordag = et_pwdag.getText().toString();
@@ -75,19 +75,19 @@ public class CZActivity extends AppCompatActivity implements View.OnClickListene
                     Toast.makeText(this,"密码不匹配",Toast.LENGTH_SHORT).show();
                     return;
                 }
-                MyVolley.B.register.exec(username,password).exec(this);
+                MyVolley.B.editPwd.exec(username,password).exec(this);
                 break;
         }
     }
 
-    public void register(JSONObject jsonObject) {
-        Map<String, Object> maps = GetDate.getRegister(jsonObject);
+    public void editPwd(JSONObject jsonObject) {
+        Map<String, Object> maps = GetDate.getEditPwd(jsonObject);
         Log.e("AAAAA", maps.get("msg").toString());
         if ((boolean) maps.get("msg")) {
-            Toast.makeText(this,"注册成功",Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(CZActivity.this,LoginActivity.class));
+            Toast.makeText(this,"修改成功",Toast.LENGTH_SHORT).show();
+            this.finish();
         } else {
-            Toast.makeText(this,"注册失败"+maps.get("ERROR"),Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"修改失败"+maps.get("ERROR"),Toast.LENGTH_SHORT).show();
         }
     }
 

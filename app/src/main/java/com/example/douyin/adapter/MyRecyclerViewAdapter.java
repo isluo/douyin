@@ -55,9 +55,10 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         topr.setBounds(0, 0, topr.getMinimumWidth(), topr.getMinimumHeight());
         final Drawable topw = ContextCompat.getDrawable(context, R.mipmap.e);
         topw.setBounds(0, 0, topw.getMinimumWidth(), topw.getMinimumHeight());
-        //myViewHoder.videoView.setVideoURI(Uri.parse("android.resource://"+context.getPackageName()+"/"+ videos[i%2]));
+
+
         myViewHoder.img_thumb.setImageUrl(ImgPath.getMp4s(list_mp4s.get(i).getVideopath()));
-        //myViewHoder.videoView.setVideoPath(ImgPath.getMp4(list_mp4s.get(i).getVideopath()));
+        myViewHoder.videoView.setVideoPath(ImgPath.getMp4(list_mp4s.get(i).getVideopath()));
 
         myViewHoder.tv_userID.setText("@"+list_mp4s.get(i).getUserid());
         myViewHoder.tv_ms.setText(list_mp4s.get(i).getVideoIntro());

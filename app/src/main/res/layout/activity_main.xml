@@ -17,9 +17,11 @@
     <LinearLayout
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:padding="3dp"
-        android:orientation="horizontal">
+        android:layout_height="46dp"
+        android:padding="5dp"
+        android:background="#0e0f1a"
+        android:orientation="horizontal"
+        >
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -32,12 +34,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#ffffff"
+                android:textSize="16sp"
                 android:text="首页" />
             <ImageView
                 android:id="@+id/iv_home"
                 android:layout_width="30dp"
                 android:layout_height="2dp"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="3dp"
                 android:background="@drawable/linew"/>
         </LinearLayout>
 
@@ -52,10 +56,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#55c7bb"
-                android:text="关注" />
+                android:text="关注"
+                android:textSize="16sp"/>
             <ImageView
                 android:id="@+id/iv_follow"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="3dp"
                 android:layout_width="30dp"
                 android:layout_height="2dp"
                 android:background="@drawable/linen"/>
@@ -69,10 +75,10 @@
             android:gravity="center">
 
             <ImageView
-                android:layout_marginBottom="3dp"
+                android:layout_marginBottom="5dp"
                 android:id="@+id/iv_shoot"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:background="@drawable/g"/>
         </LinearLayout>
 
@@ -87,12 +93,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#55c7bb"
-                android:text="消息" />
+                android:text="消息"
+                android:textSize="16sp"/>
             <ImageView
                 android:id="@+id/iv_msg"
                 android:layout_width="30dp"
                 android:layout_height="2dp"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="3dp"
                 android:background="@drawable/linen"/>
         </LinearLayout>
 
@@ -107,12 +115,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#55c7bb"
-                android:text="我" />
+                android:text="我"
+                android:textSize="16sp"/>
             <ImageView
                 android:id="@+id/iv_my"
                 android:layout_width="30dp"
                 android:layout_height="2dp"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="3dp"
                 android:background="@drawable/linen"/>
         </LinearLayout>
 

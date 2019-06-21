@@ -26,6 +26,8 @@ public class MyVolley {
         login("{\"username\":\"%s\",\"password\":\"%s\"}"),
         //注册
         register("{\"username\":\"%s\",\"password\":\"%s\"}"),
+        //用户信息
+        findUser("{\"username\":\"%s\"}"),
         //修改用户信息
         edit("{\"username\":\"%s\",\"gender\":\"%s\",\"introduce\":\"%s\",\"nname\":\"%s\"}"),
         //修改密码
@@ -36,6 +38,8 @@ public class MyVolley {
         findAllVideo("{\"userid\":\"%s\"}"),
         //用户查看自己的视频
         findVideoByUserID("{\"userid\":\"%s\"}"),
+        //根据视频id查找 视频
+        findVideoByVideoID("{\"videoid\":\"%s\"}"),
         //用户删除自己的视频
         removeVideo("{\"userid\":\"%s\",\"videoid\":\"%s\"}"),
         //添加评论

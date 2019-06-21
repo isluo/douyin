@@ -116,6 +116,34 @@ public class GetDate {
         return maps;
     }
 
+    public static Map<String,Object> findUser(JSONObject jsonObject){
+        Map<String,Object> maps = new HashMap<>();
+        User user = null;
+        try {
+            if(jsonObject.getString("msg").equals("1")){
+                JSONObject object = jsonObject.getJSONObject("user");
+                user = new User();
+                user.setId(object.getInt("id"));
+                user.setUsername(object.getString("username"));
+                user.setGender(object.getString("gender"));
+                user.setIntroduce(object.getString("introduce"));
+                if(!object.getString("head").equals("null")){
+                    user.setHead(object.getString("head"));
+                }
+                user.setNname(object.getString("nname"));
+
+                maps.put("msg",true);
+                maps.put("user",user);
+            }else{
+                maps.put("msg",false);
+                maps.put("ERROR",jsonObject.getString("ERROR"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return maps;
+    }
+
     /**
      * 修改信息
      *
@@ -290,6 +318,24 @@ public class GetDate {
         return maps;
     }
 
+
+    public static Map<String,Object> findVideoByVideoID(JSONObject jsonObject){
+        Map<String,Object> maps = new HashMap<>();
+        try {
+            if(jsonObject.getString("msg").equals("1")){
+                JSONObject object = jsonObject.getJSONObject("video");
+                Video video = new Gson().fromJson(object.toString(),Video.class);
+                maps.put("video",video);
+                maps.put("msg",true);
+            }else{
+                maps.put("msg",false);
+                maps.put("ERROR",jsonObject.getString("ERROR"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return maps;
+    }
 
     /**
      * 根据用户id 视频id 删除视频

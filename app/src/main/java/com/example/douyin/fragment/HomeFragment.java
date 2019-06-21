@@ -4,7 +4,9 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,12 +15,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.example.douyin.App;
 import com.example.douyin.R;
 import com.example.douyin.adapter.MyRecyclerViewAdapter;
+import com.example.douyin.adapter.PLRecyclerViewAdapter;
 import com.example.douyin.util.MyVolley;
 import com.example.douyin.viewpager.OnViewPagerListener;
 import com.example.douyin.viewpager.ViewPagerLayoutManager;
@@ -92,6 +96,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onInitComplete() {
+                plClick(0);
                 playVideo(0);
             }
 
@@ -109,6 +114,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onPageSelected(int position,boolean isBottom) {
                 playVideo(0);
+                plClick(position);
             }
 
 
@@ -165,4 +171,48 @@ public class HomeFragment extends Fragment {
         //imgThumb.animate().alpha(1).start();
         imgPlay.animate().alpha(0f).start();
     }
+
+    private void plClick(final int p){
+        //View itemView = View.inflate(getActivity(), R.layout.item_video_page, null);
+        View itemView = mRecyclerView.getChildAt(0);
+        Log.e("===itemView===",itemView+"");
+        Log.e("===itemView===",list_mp4s.get(p).getVideoIntro()+""+"=="+p);
+        TextView tv_dz = itemView.findViewById(R.id.tv_dz);
+        TextView sv_head = itemView.findViewById(R.id.si_head);
+        TextView tv_pl = itemView.findViewById(R.id.tv_pl);
+        tv_pl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initDialog();
+            }
+        });
+    }
+    BottomSheetDialog bottomSheetDialog;
+    ImageView tv_dis;
+    RecyclerView recyclerViewpl ;
+
+
+    private void initDialog() {
+        bottomSheetDialog = new BottomSheetDialog(getActivity());
+        bottomSheetDialog.setContentView(R.layout.dialog_pl);
+        //给布局设置透明背景色
+        bottomSheetDialog.getDelegate().findViewById(android.support.design.R.id.design_bottom_sheet)
+                .setBackgroundColor(getResources().getColor(android.R.color.transparent));
+        //View view = View.inflate(getActivity(), R.layout.dialog_pl, null);
+        bottomSheetDialog.show();
+        tv_dis = (ImageView)bottomSheetDialog.findViewById(R.id.dis_dia);
+        tv_dis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheetDialog.dismiss();
+            }
+        });
+
+        recyclerViewpl = bottomSheetDialog.findViewById(R.id.recyclerview);
+        recyclerViewpl.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        recyclerViewpl.setAdapter(new PLRecyclerViewAdapter(getActivity()));
+    }
+
+
 }

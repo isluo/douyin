@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="6dp">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <com.example.douyin.widget.MySmartImage
+            android:id="@+id/iv_head"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/header_icon_2"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:paddingHorizontal="15dp"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="123123"/>
+        <TextView
+            android:id="@+id/tv_pl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="dsfsdfsdfafsdf"
+            android:textColor="#000"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="10dp"
+        android:layout_marginTop="4dp">
+        <ImageView
+            android:id="@+id/iv_ic"
+            android:src="@drawable/eh"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <TextView
+            android:id="@+id/tv_dzs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="123"/>
+    </LinearLayout>
+</LinearLayout>

@@ -26,13 +26,13 @@ import org.json.JSONObject;
 import java.util.List;
 import java.util.Map;
 
-public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHoder> {
+public class GzRecyclerViewAdapter extends RecyclerView.Adapter<GzRecyclerViewAdapter.MyViewHoder> {
 
     private Context context;
     private List<Video> list_mp4s;
     private int b;
     private MyViewHoder myViewHoder;
-    public MyRecyclerViewAdapter(Context context, List<Video> list_mp4s) {
+    public GzRecyclerViewAdapter(Context context, List<Video> list_mp4s) {
         this.context = context;
         this.list_mp4s = list_mp4s;
 
@@ -57,9 +57,9 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         myViewHoder.tv_ms.setText(list_mp4s.get(i).getVideoIntro());
 
         this.myViewHoder = myViewHoder;
-        MyVolley.B.selectPlByVideoId.exec(list_mp4s.get(i).getVideoid()).exec(MyRecyclerViewAdapter.this);
-        MyVolley.B.findVideoByVideoID.exec(list_mp4s.get(i).getVideoid()).exec(MyRecyclerViewAdapter.this);
-        MyVolley.B.findUser.exec(list_mp4s.get(i).getUserid()).exec(MyRecyclerViewAdapter.this);
+        MyVolley.B.selectPlByVideoId.exec(list_mp4s.get(i).getVideoid()).exec(GzRecyclerViewAdapter.this);
+        MyVolley.B.findVideoByVideoID.exec(list_mp4s.get(i).getVideoid()).exec(GzRecyclerViewAdapter.this);
+        MyVolley.B.findUser.exec(list_mp4s.get(i).getUserid()).exec(GzRecyclerViewAdapter.this);
         if(list_mp4s.get(i).isB()){
             myViewHoder.tv_dz.setCompoundDrawables(null, topr , null, null);
         }
@@ -70,12 +70,12 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
                 if(list_mp4s.get(b).isB()){
                     myViewHoder.tv_dz.setCompoundDrawables(null, topw , null, null);
-                    MyVolley.B.updateVideoNum2.exec(list_mp4s.get(i).getVideoid()).exec(MyRecyclerViewAdapter.this);
+                    MyVolley.B.updateVideoNum2.exec(list_mp4s.get(i).getVideoid()).exec(GzRecyclerViewAdapter.this);
                     myViewHoder.tv_dz.setText(Integer.parseInt(myViewHoder.tv_dz.getText().toString())-1+"");
                     list_mp4s.get(b).setB(false);
                 }else {
                     myViewHoder.tv_dz.setCompoundDrawables(null, topr , null, null);
-                    MyVolley.B.updateVideoNum.exec(list_mp4s.get(i).getVideoid()).exec(MyRecyclerViewAdapter.this);
+                    MyVolley.B.updateVideoNum.exec(list_mp4s.get(i).getVideoid()).exec(GzRecyclerViewAdapter.this);
                     myViewHoder.tv_dz.setText(Integer.parseInt(myViewHoder.tv_dz.getText().toString())+1+"");
                     list_mp4s.get(b).setB(true);
                 }
@@ -97,7 +97,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     public void updateVideoNum(JSONObject jsonObject){
         Map<String,Object> maps = GetDate.updateVideoNum(jsonObject);
         if((boolean)maps.get("msg")){
-            //+1
+           //+1
         }else{
 
         }

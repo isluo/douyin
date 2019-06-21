@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.douyin.fragment.GzFragment;
 import com.example.douyin.fragment.HomeFragment;
 import com.example.douyin.fragment.MyInfoFragment;
 import com.example.douyin.util.MyVolley;
@@ -89,9 +90,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 bottomChange(0);
                 break;
             case R.id.tv_follow:
-
+                getSupportFragmentManager().beginTransaction().replace(R.id.relativelayout,new GzFragment()).commit();
                 bottomChange(1);
-
                 break;
             case R.id.iv_shoot:
                 startActivity(new Intent(MainActivity.this,RecActivity.class));

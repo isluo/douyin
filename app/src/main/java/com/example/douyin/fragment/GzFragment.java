@@ -12,32 +12,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.example.douyin.App;
 import com.example.douyin.R;
+import com.example.douyin.adapter.GzRecyclerViewAdapter;
 import com.example.douyin.adapter.MyRecyclerViewAdapter;
 import com.example.douyin.util.MyVolley;
 import com.example.douyin.viewpager.OnViewPagerListener;
 import com.example.douyin.viewpager.ViewPagerLayoutManager;
 import com.example.douyin.wenl.GetDate;
-import com.example.douyin.wenl.pojo.Pl;
 import com.example.douyin.wenl.pojo.Video;
+
 
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class HomeFragment extends Fragment {
+public class GzFragment extends Fragment {
 
     private View view;
     private RecyclerView mRecyclerView;
-    private MyRecyclerViewAdapter adapter;
+    private GzRecyclerViewAdapter adapter;
     private ViewPagerLayoutManager mLayoutManager;
     private List<Video> list_mp4s;
     @Nullable
@@ -51,22 +49,21 @@ public class HomeFragment extends Fragment {
 
         initListener();
 
-        MyVolley.B.findAllVideo.exec(App.user).exec(this);
+        MyVolley.B.findVideoByGzUserID.exec(App.user).exec(this);
 
         return view;
     }
 
-    public void findAllVideo(JSONObject jsonObject){
-        Map<String,Object> maps = GetDate.findAllVideo(jsonObject);
+    public void findVideoByGzUserID(JSONObject jsonObject){
+        Log.e("aaaaaaaaa",jsonObject.toString() );
+        Map<String,Object> maps = GetDate.findVideoByGzUserID(jsonObject);
         Log.e("AAAAA",maps.get("msg").toString() );
         if((boolean)maps.get("msg")){
             List<Video> lists = (List<Video>) maps.get("list_video");
-
                 list_mp4s = lists;
-
             Log.e("BBB","获取视频成功" );
             Collections.shuffle(list_mp4s);
-            adapter = new MyRecyclerViewAdapter(getContext(),list_mp4s);
+            adapter = new GzRecyclerViewAdapter(getContext(),list_mp4s);
             mRecyclerView.setLayoutManager(mLayoutManager);
             mRecyclerView.setAdapter(adapter);
 

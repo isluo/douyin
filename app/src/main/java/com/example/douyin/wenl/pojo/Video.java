@@ -10,6 +10,15 @@ public class Video {
     private Long dz;
 
     private String videoIntro;
+    private boolean b = false;
+
+    public boolean isB() {
+        return b;
+    }
+
+    public void setB(boolean b) {
+        this.b = b;
+    }
 
     public String getVideoIntro() {
         return videoIntro;

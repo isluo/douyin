@@ -34,12 +34,16 @@ public class MyVolley {
         editPwd("{\"username\":\"%s\",\"password\":\"%s\"}"),
         //视频点赞
         updateVideoNum("{\"videoid\":\"%s\"}"),
+        //视频quxiao点赞
+        updateVideoNum2("{\"videoid\":\"%s\"}"),
         //获取所有视频
         findAllVideo("{\"userid\":\"%s\"}"),
         //用户查看自己的视频
         findVideoByUserID("{\"userid\":\"%s\"}"),
         //根据视频id查找 视频
         findVideoByVideoID("{\"videoid\":\"%s\"}"),
+        //根据用户id获取关注用户的视频
+        findVideoByGzUserID("{\"userid\":\"%s\"}"),
         //用户删除自己的视频
         removeVideo("{\"userid\":\"%s\",\"videoid\":\"%s\"}"),
         //添加评论

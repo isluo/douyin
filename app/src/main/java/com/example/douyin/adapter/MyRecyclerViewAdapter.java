@@ -1,6 +1,7 @@
 package com.example.douyin.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -20,6 +21,7 @@ import com.example.douyin.util.MyVolley;
 import com.example.douyin.wenl.GetDate;
 import com.example.douyin.wenl.ImgPath;
 import com.example.douyin.wenl.pojo.Pl;
+import com.example.douyin.wenl.pojo.User;
 import com.example.douyin.wenl.pojo.Video;
 import com.example.douyin.wenl.pojo.Videos;
 import com.example.douyin.widget.FullScreenVideoView;
@@ -51,22 +53,54 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHoder myViewHoder, int i) {
+    public void onBindViewHolder(@NonNull final MyViewHoder myViewHoder, final int i) {
         //myViewHoder.videoView.setVideoURI(Uri.parse("android.resource://"+context.getPackageName()+"/"+ videos[i%2]));
         myViewHoder.img_thumb.setImageUrl(ImgPath.getMp4s(list_mp4s.get(i).getVideopath()));
         myViewHoder.videoView.setVideoPath(ImgPath.getMp4(list_mp4s.get(i).getVideopath()));
-
-        myViewHoder.tv_userID.setText("@"+list_mp4s.get(i).getUserid());
         myViewHoder.tv_ms.setText(list_mp4s.get(i).getVideoIntro());
         myViewHoder.sv_head.setImageUrl(list_mp4s.get(i).getHead());
-        myViewHoder.tv_dz.setText(list_mp4s.get(i).getDz()+"");
-
         this.myViewHoder = myViewHoder;
         MyVolley.B.selectPlByVideoId.exec(list_mp4s.get(i).getVideoid()).exec(MyRecyclerViewAdapter.this);
-
-        Log.e("AAAAAA"+ImgPath.getMp4(list_mp4s.get(i).getVideopath()),"BBB"+ ImgPath.getMp4(list_mp4s.get(i).getVideopath()));
+        MyVolley.B.findVideoByVideoID.exec(list_mp4s.get(i).getVideoid()).exec(MyRecyclerViewAdapter.this);
+        MyVolley.B.findUser.exec(list_mp4s.get(i).getUserid()).exec(MyRecyclerViewAdapter.this);
+        myViewHoder.tv_dz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyVolley.B.updateVideoNum.exec(list_mp4s.get(i).getVideoid()).exec(MyRecyclerViewAdapter.this);
+                myViewHoder.tv_dz.setText(Integer.parseInt(myViewHoder.tv_dz.getText().toString())+1+"");
+            }
+        });
     }
 
+    public void findVideoByVideoID(JSONObject jsonObject){
+        Map<String,Object> maps = GetDate.findVideoByVideoID(jsonObject);
+        if((boolean)maps.get("msg")){
+            Video video = (Video) maps.get("video");
+            myViewHoder.tv_dz.setText(video.getDz()+"");
+        }else{
+            myViewHoder.tv_dz.setText("0");
+        }
+    }
+
+
+    public void updateVideoNum(JSONObject jsonObject){
+        Map<String,Object> maps = GetDate.updateVideoNum(jsonObject);
+        if((boolean)maps.get("msg")){
+           //+1
+        }else{
+            myViewHoder.tv_dz.setText(Integer.parseInt(myViewHoder.tv_dz.getText().toString())-1+"");
+        }
+    }
+
+    public void findUser(JSONObject jsonObject){
+        Map<String,Object> maps = GetDate.findUser(jsonObject);
+        if((boolean)maps.get("msg")){
+            User user = (User) maps.get("user");
+            myViewHoder.tv_userID.setText("@"+user.getNname()+"");
+        }else{
+            myViewHoder.tv_userID.setText("@  ");
+        }
+    }
 
     public void selectPlByVideoId(JSONObject jsonObject){
         Map<String,Object> maps = GetDate.selectPlByVideoId(jsonObject);

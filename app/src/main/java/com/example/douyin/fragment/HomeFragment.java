@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -38,12 +40,16 @@ import java.util.List;
 import java.util.Map;
 
 public class HomeFragment extends Fragment {
-
+    EditText et_pl;
+    Button btn_fb;
+    String pl = "";
     private View view;
     private RecyclerView mRecyclerView;
     private MyRecyclerViewAdapter adapter;
     private ViewPagerLayoutManager mLayoutManager;
+    private PLRecyclerViewAdapter recyclerView;
     private List<Video> list_mp4s;
+    private int p  = 0;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -85,7 +91,6 @@ public class HomeFragment extends Fragment {
 
     private void initView() {
         mRecyclerView = view.findViewById(R.id.recyclerview);
-
         mLayoutManager = new ViewPagerLayoutManager(getContext(), OrientationHelper.VERTICAL);
 
 
@@ -183,7 +188,7 @@ public class HomeFragment extends Fragment {
         tv_pl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                initDialog();
+                initDialog(p);
             }
         });
     }
@@ -192,15 +197,27 @@ public class HomeFragment extends Fragment {
     RecyclerView recyclerViewpl ;
 
 
-    private void initDialog() {
+    private void initDialog(final int p) {
+        this.p = p;
         bottomSheetDialog = new BottomSheetDialog(getActivity());
         bottomSheetDialog.setContentView(R.layout.dialog_pl);
         //给布局设置透明背景色
         bottomSheetDialog.getDelegate().findViewById(android.support.design.R.id.design_bottom_sheet)
                 .setBackgroundColor(getResources().getColor(android.R.color.transparent));
         //View view = View.inflate(getActivity(), R.layout.dialog_pl, null);
-        bottomSheetDialog.show();
+        recyclerViewpl = bottomSheetDialog.findViewById(R.id.recyclerview);
+        recyclerViewpl.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        recyclerView = new PLRecyclerViewAdapter(getActivity(),list_mp4s.get(p).getVideoid());
+
+        recyclerViewpl.setAdapter(recyclerView);
+
         tv_dis = (ImageView)bottomSheetDialog.findViewById(R.id.dis_dia);
+        et_pl = (EditText)bottomSheetDialog.findViewById(R.id.et_pl);
+        btn_fb = (Button)bottomSheetDialog.findViewById(R.id.btn_fb);
+
+        bottomSheetDialog.show();
+        recyclerView.notifyDataSetChanged();
         tv_dis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -208,11 +225,36 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        recyclerViewpl = bottomSheetDialog.findViewById(R.id.recyclerview);
-        recyclerViewpl.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        recyclerViewpl.setAdapter(new PLRecyclerViewAdapter(getActivity()));
+
+        btn_fb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pl=et_pl.getText().toString().trim();
+                if(pl ==null || "".equals(pl)){
+                    Toast.makeText(getContext(),"请输入评论内容",Toast.LENGTH_SHORT).show();
+                }else {
+                    MyVolley.B.addPl.exec(list_mp4s.get(p).getVideoid(),App.user,pl).exec(HomeFragment.this);
+                    et_pl.setText(" ");
+                }
+            }
+        });
+
+
+
+        //{"videoid":"%s","userid":"%s","comment":"%s"}
+
+
     }
 
+    public void addPl(JSONObject jsonObject){
+        Map<String,Object> maps = GetDate.addPl(jsonObject);
+        if((boolean)maps.get("msg")){
+            recyclerViewpl.setAdapter(new PLRecyclerViewAdapter(getActivity(),list_mp4s.get(p).getVideoid()));
+            Toast.makeText(App.context,"评论成功",Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(App.context,"评论失败",Toast.LENGTH_SHORT).show();
+        }
+    }
 
 }

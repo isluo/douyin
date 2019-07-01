@@ -50,6 +50,8 @@ public class MyVolley {
         addPl("{\"videoid\":\"%s\",\"userid\":\"%s\",\"comment\":\"%s\"}"),
         //给评论点赞
         updatePlNum("{\"id\":\"%s\"}"),
+        //取消评论点赞
+        updatePlNum2("{\"id\":\"%s\"}"),
         //获取某视频的所有评论内容
         selectPlByVideoId("{\"videoid\":\"%s\"}"),
         //删除评论
@@ -57,7 +59,7 @@ public class MyVolley {
         //关注
         addGz("{\"userid\":\"%s\",\"userid2\":\"%s\"}"),
         //用户查看自己关注的用户
-        findByUser("{\"userid\":\"11\"}"),
+        findByUser("{\"userid\":\"%s\"}"),
         //取消关注
         removeGz("{\"id\":\"%s\"}")
         ;

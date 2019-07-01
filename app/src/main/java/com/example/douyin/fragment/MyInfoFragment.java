@@ -1,10 +1,12 @@
 package com.example.douyin.fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,18 +43,36 @@ public class MyInfoFragment extends Fragment implements View.OnClickListener {
     private LinearLayout mLlGz;
     private LinearLayout mLl;
 
+    private TextView mTvZp;
+    private ImageView mIvZp;
+
+    private TextView mTvGz;
+    private ImageView mIvGz;
+    public static MyInfoFragment infoFragment;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_myinfo, container, false);
+        infoFragment = this;
         initView(view);
         mTvUsernaem.setText("抖音号:"+App.user);
-        if(!App.nname.equals("" )|| App.nname != null){
+
+        mIvHead.setImageUrl(App.head);
+
+        if(App.nname.equals("null")){
+            mTvNname.setText("@");
+        }else{
             mTvNname.setText(App.nname);
         }
-        mIvHead.setImageUrl(App.head);
-        mTvIntroduce.setText(App.introduce);
+
+        if(App.introduce.equals("null")){
+            mTvIntroduce.setText("你还没有填写个人简介...");
+        }else{
+            mTvIntroduce.setText(App.introduce);
+        }
+
         return view;
     }
 
@@ -68,6 +88,12 @@ public class MyInfoFragment extends Fragment implements View.OnClickListener {
         mTvEdit.setOnClickListener(this);
         mLlZp.setOnClickListener(this);
         mLlGz.setOnClickListener(this);
+
+        mTvZp = (TextView) view.findViewById(R.id.tv_zp);
+        mIvZp = (ImageView) view.findViewById(R.id.iv_zp);
+        mTvGz = (TextView) view.findViewById(R.id.tv_gz);
+        mIvGz = (ImageView) view.findViewById(R.id.iv_gz);
+        getChildFragmentManager().beginTransaction().replace(R.id.ll_fra, new ZPFragment()).commit();
     }
 
     @Override
@@ -79,9 +105,30 @@ public class MyInfoFragment extends Fragment implements View.OnClickListener {
                 startActivity(new Intent(getActivity(), MymsgActivity.class));
                 break;
             case R.id.ll_zp:
+                getChildFragmentManager().beginTransaction().replace(R.id.ll_fra, new ZPFragment()).commit();
+                mTvGz.setTextColor(Color.parseColor("#BB9393"));
+                mTvZp.setTextColor(Color.parseColor("#ffffff"));
+                mIvGz.setVisibility(View.GONE);
+                mIvZp.setVisibility(View.VISIBLE);
                 break;
             case R.id.ll_gz:
+                getChildFragmentManager().beginTransaction().replace(R.id.ll_fra, new GZListFragment()).commit();
+                mTvGz.setTextColor(Color.parseColor("#BB9393"));
+                mTvZp.setTextColor(Color.parseColor("#ffffff"));
+                mTvGz.setTextColor(Color.parseColor("#ffffff"));
+                mTvZp.setTextColor(Color.parseColor("#BB9393"));
+                mIvGz.setVisibility(View.VISIBLE);
+                mIvZp.setVisibility(View.GONE);
                 break;
         }
+    }
+
+    public void updata(){
+        mIvHead.setImageUrl(App.head);
+        if(!App.nname.equals("" )|| App.nname != null){
+            mTvNname.setText(App.nname);
+        }
+        mIvHead.setImageUrl(App.head);
+        mTvIntroduce.setText(App.introduce);
     }
 }

@@ -495,16 +495,6 @@ public class GetDate {
         try {
             if(jsonObject.getString("msg").equals("1")){
                 maps.put("msg",true);
-                JSONArray array = jsonObject.getJSONArray("lostType");
-                List<Gz> list_gz = new ArrayList<>();
-
-                for (int i = 0; i < array.length(); i++) {
-                    JSONObject object = new JSONObject(array.get(i).toString());
-                    Gz gz = new Gz();
-                    gz = new Gson().fromJson(object.toString(),Gz.class);
-                    list_gz.add(gz);
-                }
-                maps.put("list_gz",list_gz);
             }else{
                 maps.put("msg",false);
                 maps.put("ERROR",jsonObject.getString("ERROR"));
@@ -536,4 +526,31 @@ public class GetDate {
     }
 
 
+    public static Map<String,Object> findByUser(JSONObject jsonObject){
+        Map<String,Object> maps = new HashMap<>();
+
+        try {
+            if(jsonObject.getString("msg").equals("1")){
+                maps.put("msg",true);
+                JSONArray array = jsonObject.getJSONArray("lostType");
+                List<User> list_user = new ArrayList<>();
+                List<Integer> inte = new ArrayList<>();
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject object = new JSONObject(array.get(i).toString());
+                    User user = new User();
+                    user.setUsername(object.getString("userid2"));
+                    list_user.add(user);
+                    inte.add(object.getInt("id"));
+                }
+                maps.put("list_user",list_user);
+                maps.put("inte",inte);
+            }else{
+                maps.put("msg",false);
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return maps;
+    }
 }

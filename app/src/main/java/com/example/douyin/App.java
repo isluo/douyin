@@ -5,8 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class App extends Application {
-    //public static String ip = "wenl121.cn";
-    public static String ip = "129.211.67.186";
+        public static String ip = "wenl121.cn";
+    //public static String ip = "192.168.43.18:8080";
     public static String user = "";
     public static String password = "";
     public static String head = "";

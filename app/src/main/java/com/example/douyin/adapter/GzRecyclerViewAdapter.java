@@ -23,6 +23,7 @@ import com.loopj.android.image.SmartImageView;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -36,8 +37,10 @@ public class GzRecyclerViewAdapter extends RecyclerView.Adapter<GzRecyclerViewAd
         this.context = context;
         this.list_mp4s = list_mp4s;
 
-
     }
+
+
+
     @NonNull
     @Override
     public MyViewHoder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -108,9 +111,12 @@ public class GzRecyclerViewAdapter extends RecyclerView.Adapter<GzRecyclerViewAd
         if((boolean)maps.get("msg")){
             User user = (User) maps.get("user");
             myViewHoder.tv_userID.setText("@"+user.getNname()+"");
+            if(user.getNname() == null || user.getNname().equals("")||user.getNname().equals("null")){
+                myViewHoder.tv_userID.setText("@");
+            }
             myViewHoder.sv_head.setImageUrl(ImgPath.getImg(user.getHead()));
         }else{
-            myViewHoder.tv_userID.setText("@  ");
+            myViewHoder.tv_userID.setText("@");
         }
     }
 

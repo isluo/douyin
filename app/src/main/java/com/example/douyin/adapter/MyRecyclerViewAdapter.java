@@ -5,13 +5,16 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.example.douyin.App;
 import com.example.douyin.R;
 import com.example.douyin.util.MyVolley;
 import com.example.douyin.wenl.GetDate;
@@ -56,6 +59,15 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         myViewHoder.videoView.setVideoPath(ImgPath.getMp4(list_mp4s.get(i).getVideopath()));
         myViewHoder.tv_ms.setText(list_mp4s.get(i).getVideoIntro());
 
+        myViewHoder.sv_head.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e(""+App.user,"AAA"+list_mp4s.get(i).getUserid());
+                myViewHoder.imageView.setBackgroundResource(R.drawable.gz1);
+                MyVolley.B.addGz.exec(App.user,list_mp4s.get(i).getUserid()).exec(MyRecyclerViewAdapter.this);
+            }
+        });
+
         this.myViewHoder = myViewHoder;
         MyVolley.B.selectPlByVideoId.exec(list_mp4s.get(i).getVideoid()).exec(MyRecyclerViewAdapter.this);
         MyVolley.B.findVideoByVideoID.exec(list_mp4s.get(i).getVideoid()).exec(MyRecyclerViewAdapter.this);
@@ -93,6 +105,14 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         }
     }
 
+    public void addGz(JSONObject jsonObject){
+        Map<String,Object> maps = GetDate.addGz(jsonObject);
+        if((boolean)maps.get("msg")){
+            Toast.makeText(App.context,"关注成功",Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(App.context,"已经关注",Toast.LENGTH_SHORT).show();
+        }
+    }
 
     public void updateVideoNum(JSONObject jsonObject){
         Map<String,Object> maps = GetDate.updateVideoNum(jsonObject);
@@ -108,9 +128,12 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         if((boolean)maps.get("msg")){
             User user = (User) maps.get("user");
             myViewHoder.tv_userID.setText("@"+user.getNname()+"");
+            if(user.getNname() == null || user.getNname().equals("")||user.getNname().equals("null")){
+                myViewHoder.tv_userID.setText("@");
+            }
             myViewHoder.sv_head.setImageUrl(ImgPath.getImg(user.getHead()));
         }else{
-            myViewHoder.tv_userID.setText("@  ");
+            myViewHoder.tv_userID.setText("@");
         }
     }
 
@@ -138,6 +161,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         TextView tv_userID;
         TextView tv_dz;
         TextView tv_pl;
+        ImageView imageView;
 
         public MyViewHoder(View itemView) {
             super(itemView);
@@ -145,6 +169,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             videoView = itemView.findViewById(R.id.video_view);
             img_play = itemView.findViewById(R.id.img_play);
 
+            imageView = itemView.findViewById(R.id.iv_gz);
             tv_dz = itemView.findViewById(R.id.tv_dz);
             sv_head = itemView.findViewById(R.id.si_head);
             tv_ms = itemView.findViewById(R.id.tv_ms);

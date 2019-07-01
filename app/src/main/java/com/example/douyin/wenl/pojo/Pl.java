@@ -11,6 +11,17 @@ public class Pl {
 
     private Long videoid;
 
+    private boolean b = false;
+
+    public boolean isB() {
+        return b;
+    }
+
+    public void setB(boolean b) {
+        this.b = b;
+    }
+
+
     public Long getId() {
         return id;
     }

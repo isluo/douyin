@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.LoginActivity"
-    android:background="#eb9e50ed"
+    android:background="#95000000"
     android:orientation="vertical">
 
     <RelativeLayout

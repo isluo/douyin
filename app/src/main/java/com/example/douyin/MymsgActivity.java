@@ -24,10 +24,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.example.douyin.dialog.HeadDialog;
+import com.example.douyin.fragment.MyInfoFragment;
 import com.example.douyin.util.MyVolley;
 import com.example.douyin.util.PostUploadRequest;
 import com.example.douyin.wenl.GetDate;
 import com.example.douyin.wenl.ImgPath;
+import com.example.douyin.wenl.pojo.User;
 import com.example.douyin.widget.MySmartImage;
 
 import org.json.JSONObject;
@@ -179,6 +181,7 @@ public class MymsgActivity extends AppCompatActivity implements View.OnClickList
         Log.e("AAAAA", maps.get("msg").toString());
         if ((boolean) maps.get("msg")) {
             Toast.makeText(this,"修改成功",Toast.LENGTH_SHORT).show();
+            MyInfoFragment.infoFragment.updata();
         } else {
             Toast.makeText(this,"修改失败"+maps.get("ERROR"),Toast.LENGTH_SHORT).show();
         }
@@ -212,6 +215,16 @@ public class MymsgActivity extends AppCompatActivity implements View.OnClickList
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
         photoPickerIntent.setType("image/*");
         startActivityForResult(photoPickerIntent, ALBUM_REQUEST_CODE);
+    }
+
+
+    public void findUser(JSONObject jsonObject){
+        Map<String,Object> maps = GetDate.findUser(jsonObject);
+        if((boolean)maps.get("msg")){
+            User user = (User) maps.get("user");
+            App.head = ImgPath.getImg(user.getHead());
+            MyInfoFragment.infoFragment.updata();
+        }
     }
 
     @Override
@@ -273,6 +286,9 @@ public class MymsgActivity extends AppCompatActivity implements View.OnClickList
                             @Override
                             public void onResponse(JSONObject jsonObject) {
                                 Log.e("BBBBBBB", "" + jsonObject.toString());
+                                //
+                                MyVolley.B.findUser.exec(App.user).exec(MymsgActivity.this);
+
                             }
                         }, new Response.ErrorListener() {
                             @Override
@@ -288,7 +304,9 @@ public class MymsgActivity extends AppCompatActivity implements View.OnClickList
 
                 }
                 break;
+
         }
+
     }
 
 
@@ -316,10 +334,7 @@ public class MymsgActivity extends AppCompatActivity implements View.OnClickList
 
     public String saveImage(String name, Bitmap bmp) {
         File appDir = new File(Environment.getExternalStorageDirectory().getPath());
-        // String path = saveImage("saveImage" + System.currentTimeMillis(), image);
-//        if (!appDir.exists()) {
-//            appDir.mkdir();
-//        }
+
         File filee = new File(appDir, "aaaa");
         if (!filee.exists()) {
             filee.mkdir();

@@ -21,13 +21,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".VideoUpActivity"></activity>
-        <activity android:name=".RecActivity">
-
-        </activity>
-        <activity android:name=".MymsgActivity">
-
-        </activity>
+        <activity android:name=".ZPActivity"></activity>
+        <activity android:name=".VideoUpActivity" />
+        <activity android:name=".RecActivity"></activity>
+        <activity android:name=".MymsgActivity"></activity>
         <activity android:name=".RegisterActivity" />
         <activity
             android:name=".MainActivity"
@@ -39,7 +36,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CZActivity"></activity>
+        <activity android:name=".CZActivity" />
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.example.douyin.fileprovider"
